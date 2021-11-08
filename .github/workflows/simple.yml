@@ -22,6 +22,14 @@ jobs:
           import requests
           print(platform.processor())
         shell: python
+  
+  runs-windows-command:
+    runs-on: windows-latest
+    steps:
+      - name: Windows commands
+        run: |
+          Get-Location
+          dir 
 
 
 
