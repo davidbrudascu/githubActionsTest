@@ -12,8 +12,7 @@ jobs:
 
       - name: run dotnet test
         run: |
-          which dotnet
-          dotnet test
+          dotnet test ../DavidAppTest/
           dotnet build
 
 
