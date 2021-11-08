@@ -35,7 +35,7 @@ using DavidApp.Models;
         {
 #nullable restore
 #line 2 "/home/davidbrudascu/githubActionsTest/DavidApp/Views/Shared/Error.cshtml"
-  
+
     ViewData["Title"] = "Error";
 
 #line default

@@ -35,7 +35,7 @@ using DavidApp.Models;
         {
 #nullable restore
 #line 1 "/home/davidbrudascu/githubActionsTest/DavidApp/Views/Home/Index.cshtml"
-  
+
     ViewData["Title"] = "Home Page";
 
 #line default

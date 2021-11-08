@@ -35,7 +35,7 @@ using DavidApp.Models;
         {
 #nullable restore
 #line 1 "/home/davidbrudascu/githubActionsTest/DavidApp/Views/Home/Privacy.cshtml"
-  
+
     ViewData["Title"] = "Privacy Policy";
 
 #line default
