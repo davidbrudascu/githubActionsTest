@@ -14,12 +14,16 @@ jobs:
         run: |
           echo "current path"
           pwd
+          echo "List directios"
+          ls
+      - name: Python commands
+        run : | 
+          import platform
+          import requests
+          print(platfrom.processor())
+        shell: python
 
 
-      - name: dotner versions
-        run: | 
-          dotnet -v
-          dotnet --version
-          
+
 
 
