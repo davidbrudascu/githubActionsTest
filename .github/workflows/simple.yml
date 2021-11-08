@@ -20,7 +20,7 @@ jobs:
         run : | 
           import platform
           import requests
-          print(platfrom.processor())
+          print(platform.processor())
         shell: python
 
 
