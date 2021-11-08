@@ -14,8 +14,13 @@ jobs:
         run: |
           which dotnet
           dotnet test
+          dotnet build
 
-      - name: multiline script
+
+      - name: dotner versions
         run: | 
-          node -v
-          npm -v
+          dotnet -v
+          dotnet --version
+          
+
+
