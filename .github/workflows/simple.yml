@@ -10,7 +10,7 @@ jobs:
       - name: echo a string
         run: echo "Starting David app workflow"
 
-      - name: run dotnet test
+      - name: Current path
         run: |
           echo "current path"
           pwd
