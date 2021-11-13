@@ -1,35 +1,88 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\David.Brudascu\\Downloads\\DavidApp\\DavidAppTest\\DavidAppTest.csproj": {}
+    "/home/davidbrudascu/githubActionsTest/DavidAppTest/DavidAppTest.csproj": {}
   },
   "projects": {
-    "C:\\Users\\David.Brudascu\\Downloads\\DavidApp\\DavidAppTest\\DavidAppTest.csproj": {
+    "/home/davidbrudascu/githubActionsTest/DavidApp/DavidApp.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\David.Brudascu\\Downloads\\DavidApp\\DavidAppTest\\DavidAppTest.csproj",
-        "projectName": "DavidAppTest",
-        "projectPath": "C:\\Users\\David.Brudascu\\Downloads\\DavidApp\\DavidAppTest\\DavidAppTest.csproj",
-        "packagesPath": "C:\\Users\\David.Brudascu\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\David.Brudascu\\Downloads\\DavidApp\\DavidAppTest\\obj\\",
+        "projectUniqueName": "/home/davidbrudascu/githubActionsTest/DavidApp/DavidApp.csproj",
+        "projectName": "DavidApp",
+        "projectPath": "/home/davidbrudascu/githubActionsTest/DavidApp/DavidApp.csproj",
+        "packagesPath": "/home/davidbrudascu/.nuget/packages/",
+        "outputPath": "/home/davidbrudascu/githubActionsTest/DavidApp/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\David.Brudascu\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+          "/home/davidbrudascu/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net5.0"
         ],
         "sources": {
-          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net5.0": {
+            "targetAlias": "net5.0",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net5.0": {
+          "targetAlias": "net5.0",
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.AspNetCore.App": {
+              "privateAssets": "none"
+            },
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/5.0.402/RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "/home/davidbrudascu/githubActionsTest/DavidAppTest/DavidAppTest.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "/home/davidbrudascu/githubActionsTest/DavidAppTest/DavidAppTest.csproj",
+        "projectName": "DavidAppTest",
+        "projectPath": "/home/davidbrudascu/githubActionsTest/DavidAppTest/DavidAppTest.csproj",
+        "packagesPath": "/home/davidbrudascu/.nuget/packages/",
+        "outputPath": "/home/davidbrudascu/githubActionsTest/DavidAppTest/obj/",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "/home/davidbrudascu/.nuget/NuGet/NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net5.0"
+        ],
+        "sources": {
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "net5.0": {
             "targetAlias": "net5.0",
             "projectReferences": {
-              "C:\\Users\\David.Brudascu\\Downloads\\DavidApp\\DavidApp\\DavidApp.csproj": {
-                "projectPath": "C:\\Users\\David.Brudascu\\Downloads\\DavidApp\\DavidApp\\DavidApp.csproj"
+              "/home/davidbrudascu/githubActionsTest/DavidApp/DavidApp.csproj": {
+                "projectPath": "/home/davidbrudascu/githubActionsTest/DavidApp/DavidApp.csproj"
               }
             }
           }
@@ -76,64 +129,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.301\\RuntimeIdentifierGraph.json"
-        }
-      }
-    },
-    "C:\\Users\\David.Brudascu\\Downloads\\DavidApp\\DavidApp\\DavidApp.csproj": {
-      "version": "1.0.0",
-      "restore": {
-        "projectUniqueName": "C:\\Users\\David.Brudascu\\Downloads\\DavidApp\\DavidApp\\DavidApp.csproj",
-        "projectName": "DavidApp",
-        "projectPath": "C:\\Users\\David.Brudascu\\Downloads\\DavidApp\\DavidApp\\DavidApp.csproj",
-        "packagesPath": "C:\\Users\\David.Brudascu\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\David.Brudascu\\Downloads\\DavidApp\\DavidApp\\obj\\",
-        "projectStyle": "PackageReference",
-        "configFilePaths": [
-          "C:\\Users\\David.Brudascu\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
-        ],
-        "originalTargetFrameworks": [
-          "net5.0"
-        ],
-        "sources": {
-          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "https://api.nuget.org/v3/index.json": {}
-        },
-        "frameworks": {
-          "net5.0": {
-            "targetAlias": "net5.0",
-            "projectReferences": {}
-          }
-        },
-        "warningProperties": {
-          "warnAsError": [
-            "NU1605"
-          ]
-        }
-      },
-      "frameworks": {
-        "net5.0": {
-          "targetAlias": "net5.0",
-          "imports": [
-            "net461",
-            "net462",
-            "net47",
-            "net471",
-            "net472",
-            "net48"
-          ],
-          "assetTargetFallback": true,
-          "warn": true,
-          "frameworkReferences": {
-            "Microsoft.AspNetCore.App": {
-              "privateAssets": "none"
-            },
-            "Microsoft.NETCore.App": {
-              "privateAssets": "all"
-            }
-          },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.301\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/5.0.402/RuntimeIdentifierGraph.json"
         }
       }
     }
