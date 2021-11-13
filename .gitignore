@@ -2,3 +2,4 @@
 .vs
 DavidApp/bin
 DavidAppTest/bin/
+.venv
