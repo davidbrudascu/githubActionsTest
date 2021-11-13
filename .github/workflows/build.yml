@@ -29,7 +29,7 @@ jobs:
       run: dotnet test --no-restore --verbosity normal
 
     - name: Upload Artifacts
-          uses: actions/upload-artifact@v2
-          with:
-            name: dotnet-results-${{ matrix.dotnet-version }}
-            path: DavidApp/bin
+      uses: actions/upload-artifact@v2
+        with:
+          name: dotnet-bin
+          path: DavidApp/bin
