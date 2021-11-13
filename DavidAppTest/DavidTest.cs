@@ -8,7 +8,7 @@ namespace HelloWorldTests
     public class Tests
     {
         private const string ExpectedTest1 = "David App Test";
-        
+
         [SetUp]
         public void Setup()
         {

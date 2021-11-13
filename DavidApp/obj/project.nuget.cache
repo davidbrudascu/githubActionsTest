@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "f3AVy/cv6d5tQVuQc0HYGNGhbUr+J3eXvl3xzMiyDB75tw8xn+sb6sheOeoijWf4jKHNX3fxgMgJTaMZNi5Jsg==",
+  "dgSpecHash": "Enx/7Jzq4vkD463pjyMLmcJIDVw5Hry5cguR/L69glm8RhVRI4CkFOD9RMg0/86yywREMU1ab2GJE4PK4CUYUw==",
   "success": true,
-  "projectFilePath": "C:\\Users\\David.Brudascu\\Downloads\\DavidApp\\DavidApp\\DavidApp.csproj",
+  "projectFilePath": "/home/davidbrudascu/githubActionsTest/DavidApp/DavidApp.csproj",
   "expectedPackageFiles": [],
   "logs": []
 }
