@@ -30,6 +30,6 @@ jobs:
 
     - name: Upload Artifacts
       uses: actions/upload-artifact@v2
-        with:
-          name: dotnet-bin
-          path: DavidApp/bin
+      with:
+        name: dotnet-bin
+        path: DavidApp/bin
