@@ -1,0 +1,35 @@
+name: CI
+
+on:
+  pull_request:
+    branches: [ development ]
+   
+env:
+  DOTNET_VERSION: '5.0.301' # The .NET SDK version to use
+
+jobs:
+  build:
+    name: Build-Test
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Setup .NET Core - restore - test
+      uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: ${{ env.DOTNET_VERSION }}
+
+    # - name: Install dependencies
+    - run: dotnet restore
+
+    # - name: Test
+    - run: dotnet test --no-restore --verbosity normal --collect "Code Coverage"
+      
+    # - name: Build
+    #   run: dotnet build --configuration Release --no-restore
+
+    # - name: Upload Artifacts
+    #   uses: actions/upload-artifact@v2
+    #   with:
+    #     name: dotnet-bin
+    #     path: DavidApp/bin
