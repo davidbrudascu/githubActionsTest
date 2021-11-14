@@ -1,15 +1,11 @@
-name: CI
+name: CI WORKFLOW
 
 on:
   pull_request:
     branches: [development]
-  push:
-    branches: [development]
    
 env:
   DOTNET_VERSION: '5.0.301' 
-  AZURE_WEBAPP_NAME: DWebApp
-  AZURE_WEBAPP_Path: "."
 
 jobs:
   build:
@@ -18,11 +14,6 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
-
-    - name: Login via Azure CLI
-      uses: azure/login@v1
-      with:
-        creds: ${{secrets.AZURE_CREDENTIALS}}
 
     - name: Setup .NET Core - restore - test
       uses: actions/setup-dotnet@v1
@@ -37,26 +28,4 @@ jobs:
       with:
         name: code-coverage-result
         path: DavidAppTest/TestResults
-      
-    - name: Build Project + publish
-      if: github.event.name == 'push'
-      run: | 
-        dotnet build --configuration Release --no-restore
-        dotnet publish -c Release -o '${{ env.AZURE_WEBAPP_Path }}/myapp'
-        ls
-
-    - name: Upload build folder
-      if: github.event.name == 'push'
-      uses: actions/upload-artifact@v2
-      with:
-        name: build
-        path: DavidAppTest/bin
-
-    - name: Deploy to App Service
-      if: github.event.name == 'push'
-      uses: azure/webapps-deploy@v2
-      with:
-        app-name: ${{ env.AZURE_WEBAPP_NAME }}
-        package: '${{ env.AZURE_WEBAPP_Path }}/myapp'
-
-  
+   
