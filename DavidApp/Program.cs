@@ -16,17 +16,24 @@ namespace DavidApp
             CreateHostBuilder(args).Build().Run();
         }
 
-        public static void DavidTestMEthod()
+        public static void TestMethod1()
 
         {
-            Console.WriteLine("David App Test");
+            Console.WriteLine("Test1");
         }
-        public int DavidTestMEthod2()
+
+        public static void TestMethod2()
 
         {
-            var number = 10;
-            return number;
+            Console.WriteLine("Test1");
         }
+
+        public static void TestMethod3()
+
+        {
+            Console.WriteLine("Test1");
+        }
+       
 
         public static IHostBuilder CreateHostBuilder(string[] args) =>
             Host.CreateDefaultBuilder(args)

@@ -35,7 +35,7 @@ using DavidApp.Models;
         {
 #nullable restore
 #line 1 "/home/davidbrudascu/githubActionsTest/DavidApp/Views/_ViewStart.cshtml"
-
+  
     Layout = "_Layout";
 
 #line default

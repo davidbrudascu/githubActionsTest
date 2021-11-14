@@ -2,5 +2,7 @@ venv
 .vscode
 .vs
 DavidApp/bin
-DavidAppTest/bin/
+DavidAppTest/bin
 .venv
+DavidApp/obj
+DavidAppTest/obj
