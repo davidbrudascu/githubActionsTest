@@ -2,31 +2,67 @@ name: CI
 
 on:
   pull_request:
-    branches: [ development ]
+    branches: [development]
+  push:
+    branches: [development]
    
 env:
-  DOTNET_VERSION: '5.0.301' # The .NET SDK version to use
+  DOTNET_VERSION: '5.0.301' 
+  AZURE_WEBAPP_NAME: DWebApp
+  AZURE_WEBAPP_Path: "."
 
 jobs:
   build:
-    name: Build-Test
+    name: Build
     runs-on: windows-latest
 
     steps:
     - uses: actions/checkout@v2
+
+    - name: Login via Azure CLI
+      uses: azure/login@v1
+      with:
+        creds: ${{secrets.AZURE_CREDENTIALS}}
+
     - name: Setup .NET Core - restore - test
       uses: actions/setup-dotnet@v1
       with:
         dotnet-version: ${{ env.DOTNET_VERSION }}
 
-    # - name: Install dependencies
     - run: dotnet restore
-
-    # - name: Test
     - run: dotnet test --no-restore --verbosity normal --collect "Code Coverage"
+
+    - name: Upload Test Coverage
+      uses: actions/upload-artifact@v2
+      with:
+        name: code-coverage-result
+        path: DavidAppTest/TestResults
       
-    # - name: Build
-    #   run: dotnet build --configuration Release --no-restore
+    - name: Build Project + publish
+      if: github.event.name == 'push'
+      run: | 
+        dotnet build --configuration Release --no-restore
+        dotnet publish -c Release -o '${{ env.AZURE_WEBAPP_Path }}/myapp'
+
+    - name: Upload build folder
+      uses: actions/upload-artifact@v2
+      with:
+        name: build
+        path: DavidAppTest/bin
+
+    - name: Deploy to App Service
+      uses: azure/webapps-deploy@v2
+      with:
+        app-name: ${{ env.AZURE_WEBAPP_NAME }}
+        package: '${{ env.AZURE_WEBAPP_Path }}/myapp'
+
+    
+    - name: Deploy to stanging
+      if: github.event == 'push' 
+      uses: azure/login@v1
+      with:
+        creds: ${{secrets.AZURE_CREDENTIALS}}
+
 
     # - name: Upload Artifacts
     #   uses: actions/upload-artifact@v2
