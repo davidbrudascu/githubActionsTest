@@ -5,6 +5,13 @@ on:
     branches:
       - development
       - main
+
+  pull_request:
+    branches:
+    - main
+
+    types:
+    - closed
    
 env:
   DOTNET_VERSION: '5.0.301' 
@@ -63,7 +70,7 @@ jobs:
     needs: build
     name: release
     runs-on: ubuntu-latest
-    if: github.ref == 'refs/heads/main'
+    if: github.ref == 'refs/heads/main' || github.event.pull_request.merged == true
     steps:
       - name: Build release
         uses: K-Phoen/semver-release-action@master
