@@ -3,7 +3,8 @@ name: Release
 
 on:
   pull_request:
-    branches: [development]
+    branches:
+      - main
     types: closed
 
 jobs:
@@ -13,6 +14,6 @@ jobs:
       - name: Tag
         uses: K-Phoen/semver-release-action@master
         with:
-          release_branch: development
+          release_branch: main
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
