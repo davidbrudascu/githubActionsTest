@@ -63,9 +63,11 @@ jobs:
     needs: build
     name: release
     runs-on: ubuntu-latest
+    if: {{ github.ref == 'ref/head/main' }}
     steps:
-      uses: K-Phoen/semver-release-action@master
-      with:
+      - name: Build release
+        uses: K-Phoen/semver-release-action@master
+        with:
           release_branch: master
-      env:
+        env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
