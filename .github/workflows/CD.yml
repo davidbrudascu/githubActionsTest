@@ -3,14 +3,13 @@ name: CD WORKFLOW
 on:
   push:
     branches:
-    - development
-    - main
-  
+      - development
+      - main
 
   pull_request:
     branches:
     - main
-
+  
     types:
     - closed
    
