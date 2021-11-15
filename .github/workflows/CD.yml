@@ -2,7 +2,7 @@ name: CD WORKFLOW
 
 on:
   push:
-    branches: [development]
+    branches: [development, master]
    
 env:
   DOTNET_VERSION: '5.0.301' 
