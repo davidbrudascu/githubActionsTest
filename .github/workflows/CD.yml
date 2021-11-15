@@ -9,7 +9,7 @@ on:
   pull_request:
     branches:
     - main
-
+  
     types:
     - closed
    
@@ -56,8 +56,7 @@ jobs:
       with:
         name: build
         path: DavidAppTest/bin
-
-
+        
 
     - name: Deploy to App Service
       uses: azure/webapps-deploy@v2

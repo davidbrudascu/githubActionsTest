@@ -2,14 +2,20 @@ name: CI WORKFLOW
 
 on:
   pull_request:
-    branches: [development]
+    branches: 
+      - development
+      - main
+
+    types:
+      - opened
+      - synchronize
    
 env:
   DOTNET_VERSION: '5.0.301' 
 
 jobs:
-  build:
-    name: Build
+  build-test-coverage:
+    name: Build Test Coverage
     runs-on: windows-latest
 
     steps:
