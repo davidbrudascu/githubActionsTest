@@ -3,8 +3,16 @@ name: CD WORKFLOW
 on:
   push:
     branches:
-    - development
+      - development
+      - main
+
+  pull_request:
+    branches:
     - main
+
+    types:
+    - closed
+   
 env:
   DOTNET_VERSION: '5.0.301' 
   AZURE_WEBAPP_NAME: DWebApp
@@ -49,17 +57,24 @@ jobs:
         name: build
         path: DavidAppTest/bin
 
-    - name: Create Release
-      if: contains(github.ref, "main")
-      uses: K-Phoen/semver-release-action@master
-      with:
-          release_branch: main
-      env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-          
+
     - name: Deploy to App Service
       uses: azure/webapps-deploy@v2
       with:
         app-name: ${{ env.AZURE_WEBAPP_NAME }}
         package: '${{ env.AZURE_WEBAPP_Path }}/myapp'
+
+
+  release:
+    needs: build
+    name: release
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/main' || github.event.pull_request.merged == true
+    steps:
+      - name: Build release
+        uses: K-Phoen/semver-release-action@master
+        with:
+          release_branch: master
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
