@@ -2,8 +2,9 @@ name: CD WORKFLOW
 
 on:
   push:
-    branches: [development , main]
-   
+    branches:
+    - development
+    - main
 env:
   DOTNET_VERSION: '5.0.301' 
   AZURE_WEBAPP_NAME: DWebApp
