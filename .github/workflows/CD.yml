@@ -2,7 +2,9 @@ name: CD WORKFLOW
 
 on:
   push:
-    branches: [development, master]
+    branches:
+      - development
+      - main
    
 env:
   DOTNET_VERSION: '5.0.301' 
@@ -47,6 +49,13 @@ jobs:
       with:
         name: build
         path: DavidAppTest/bin
+
+    - name: Create Release
+      uses: K-Phoen/semver-release-action@master
+      with:
+          release_branch: master
+      env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
     - name: Deploy to App Service
       uses: azure/webapps-deploy@v2
