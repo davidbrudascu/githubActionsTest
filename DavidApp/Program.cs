@@ -25,13 +25,13 @@ namespace DavidApp
         public static void TestMethod2()
 
         {
-            Console.WriteLine("Test1");
+            Console.WriteLine("Test2");
         }
 
         public static void TestMethod3()
 
         {
-            Console.WriteLine("Test1");
+            Console.WriteLine("Test3");
         }
        
 
