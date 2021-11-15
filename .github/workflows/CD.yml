@@ -63,7 +63,7 @@ jobs:
     needs: build
     name: release
     runs-on: ubuntu-latest
-    if: {{ github.ref == 'ref/head/main' }}
+    if: github.ref == 'refs/heads/main'
     steps:
       - name: Build release
         uses: K-Phoen/semver-release-action@master
