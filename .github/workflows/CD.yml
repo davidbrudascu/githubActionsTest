@@ -1,10 +1,6 @@
 name: CD WORKFLOW
 
 on:
-  push:
-    branches:
-      - development
-      - main
 
   pull_request:
     branches:
@@ -12,10 +8,12 @@ on:
   
     types:
     - closed
+    - opened
+    - synchronize
    
 env:
   DOTNET_VERSION: '5.0.301' 
-  AZURE_WEBAPP_NAME: DWebApp
+  AZURE_WEBAPP_NAME: DWebAppProduction
   AZURE_WEBAPP_Path: "."
 
 jobs:
@@ -59,6 +57,7 @@ jobs:
         
 
     - name: Deploy to App Service
+      if: github.ref == 'refs/heads/main' || github.event.pull_request.merged == true
       uses: azure/webapps-deploy@v2
       with:
         app-name: ${{ env.AZURE_WEBAPP_NAME }}
