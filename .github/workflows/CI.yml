@@ -23,6 +23,12 @@ jobs:
     steps:
     - uses: actions/checkout@v2
 
+    - name: Login via Azure CLI
+      if: github.ref == 'refs/heads/development' || github.event.pull_request.merged == true
+      uses: azure/login@v1
+      with:
+        creds: ${{secrets.AZURE_CREDENTIALS}}
+
     - name: Setup .NET Core - restore - test
       uses: actions/setup-dotnet@v1
       with:
