@@ -25,6 +25,7 @@ jobs:
     - uses: actions/checkout@v2
 
     - name: Login via Azure CLI
+      if: github.ref == 'refs/heads/main' || github.event.pull_request.merged == true
       uses: azure/login@v1
       with:
         creds: ${{secrets.AZURE_CREDENTIALS}}
@@ -44,24 +45,39 @@ jobs:
         path: DavidAppTest/TestResults
       
     - name: Build Project + publish
+      if: github.ref == 'refs/heads/main' || github.event.pull_request.merged == true
       run: | 
         dotnet build --configuration Release --no-restore
         dotnet publish -c Release -o '${{ env.AZURE_WEBAPP_Path }}/myapp'
         ls
 
     - name: Upload build folder
+      if: github.ref == 'refs/heads/main' || github.event.pull_request.merged == true
       uses: actions/upload-artifact@v2
       with:
         name: build
         path: DavidAppTest/bin
-        
-
-    - name: Deploy to App Service
+    
+    - name: Login to Azure Docker
+      if: github.ref == 'refs/heads/main' || github.event.pull_request.merged == true
+      uses: azure/docker-login@v1
+      with:
+        login-server: dwebappregistry.azurecr.io
+        username: ${{ secrets.REGISTRY_USERNAME }}
+        password: ${{ secrets.REGISTRY_PASSWORD }}
+    
+    - name: Build and push image
+      if: github.ref == 'refs/heads/main' || github.event.pull_request.merged == true
+      run: |
+        docker build -t dwebappregistry.azurecr.io/dwebapp-production:latest .
+        docker push dwebappregistry.azurecr.io/dwebapp-production:latest
+  
+    - name: Deploy to App Service Staging
       if: github.ref == 'refs/heads/main' || github.event.pull_request.merged == true
       uses: azure/webapps-deploy@v2
       with:
         app-name: ${{ env.AZURE_WEBAPP_NAME }}
-        package: '${{ env.AZURE_WEBAPP_Path }}/myapp'
+        images: dwebappregistry.azurecr.io/dwebapp-production:latest
 
 
   release:
