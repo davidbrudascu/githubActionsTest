@@ -64,6 +64,8 @@ jobs:
         login-server: dwebappregistry.azurecr.io
         username: ${{ secrets.REGISTRY_USERNAME }}
         password: ${{ secrets.REGISTRY_PASSWORD }}
+      
+    - name: Build and push image
       run: |
         docker build -t dwebappregistry.azurecr.io/DwebApp:${{ github.sha }}
         docker push dwebappregistry.azurecr.io/DwebApp:${{ github.sha }} 
