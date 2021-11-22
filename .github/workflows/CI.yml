@@ -64,13 +64,13 @@ jobs:
         login-server: dwebappregistry.azurecr.io
         username: ${{ secrets.REGISTRY_USERNAME }}
         password: ${{ secrets.REGISTRY_PASSWORD }}
-      
+    
     - name: Build and push image
       run: |
         docker build -t dwebappregistry.azurecr.io/dwebapp:${{ github.sha }} .
-        docker push dwebappregistry.azurecr.io/dwebApp:${{ github.sha }} 
+        docker push dwebappregistry.azurecr.io/dwebApp:${{ github.sha }}
         
-        
+
 
     - name: Deploy to App Service Staging
       # if: github.ref == 'refs/heads/development' || github.event.pull_request.merged == true
