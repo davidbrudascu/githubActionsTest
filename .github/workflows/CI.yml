@@ -67,15 +67,15 @@ jobs:
       
     - name: Build and push image
       run: |
-        docker build -t dwebappregistry.azurecr.io/DwebApp:${{ github.sha }}
-        docker push dwebappregistry.azurecr.io/DwebApp:${{ github.sha }} 
+        docker build -t dwebappregistry.azurecr.io/dwebapp:${{ github.sha }}
+        docker push dwebappregistry.azurecr.io/dwebApp:${{ github.sha }} 
         
         
 
     - name: Deploy to App Service Staging
-      if: github.ref == 'refs/heads/development' || github.event.pull_request.merged == true
+      # if: github.ref == 'refs/heads/development' || github.event.pull_request.merged == true
       uses: azure/webapps-deploy@v2
       with:
         app-name: ${{ env.AZURE_WEBAPP_NAME }}
         # package: '${{ env.AZURE_WEBAPP_Path }}/myapp'
-        images: dwebappregistry.azurecr.io/DwebApp:${{ github.sha }}
+        images: dwebappregistry.azurecr.io/dwebApp:${{ github.sha }}
