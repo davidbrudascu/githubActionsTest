@@ -1,0 +1,78 @@
+name: CI WORKFLOW
+
+on:
+  pull_request:
+    branches: 
+      - development
+    
+    types:
+      - opened
+      - synchronize
+      - closed
+   
+env:
+    DOTNET_VERSION: '5.0.301'
+    AZURE_WEBAPP_NAME: DWebApp
+    AZURE_WEBAPP_Path: "."
+
+jobs:
+  build-test-coverage:
+    name: Build Test Coverage
+    runs-on: windows-latest
+
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Login via Azure CLI
+      if: github.ref == 'refs/heads/development' || github.event.pull_request.merged == true
+      uses: azure/login@v1
+      with:
+        creds: ${{secrets.AZURE_CREDENTIALS}}
+        
+    - name: Setup .NET Core - restore - test
+      uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: ${{ env.DOTNET_VERSION }}
+
+    - run: dotnet restore
+    - run: dotnet test --no-restore --verbosity normal --collect "Code Coverage"
+
+
+    - name: Upload Test Coverage
+      uses: actions/upload-artifact@v2
+      with:
+        name: code-coverage-result
+        path: DavidAppTest/TestResults
+   
+    - name: Build Project + publish
+      if: github.ref == 'refs/heads/development' || github.event.pull_request.merged == true
+      run: | 
+        dotnet build --configuration Release --no-restore
+        dotnet publish -c Release -o '${{ env.AZURE_WEBAPP_Path }}/myapp'
+        ls
+
+    - name: Upload build folder
+      if: github.ref == 'refs/heads/development' || github.event.pull_request.merged == true
+      uses: actions/upload-artifact@v2
+      with:
+        name: build
+        path: DavidAppTest/bin
+
+    - name: Login to Azure Docker
+      uses: azure/docker-login@v1
+      with:
+        login-server: dwebappregistry.azurecr.io
+        username: ${{ secrets.REGISTRY_USERNAME }}
+        password: ${{ secrets.REGISTRY_PASSWORD }}
+    
+    - name: Build and push image
+      run: |
+        docker build -t dwebappregistry.azurecr.io/dwebapp:${{ github.sha }} .
+        docker push dwebappregistry.azurecr.io/dwebapp:${{ github.sha }}
+  
+    - name: Deploy to App Service Staging
+      if: github.ref == 'refs/heads/development' || github.event.pull_request.merged == true
+      uses: azure/webapps-deploy@v2
+      with:
+        app-name: ${{ env.AZURE_WEBAPP_NAME }}
+        images: dwebappregistry.azurecr.io/dwebApp:${{ github.sha }}
