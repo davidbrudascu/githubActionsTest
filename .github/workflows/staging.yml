@@ -1,5 +1,4 @@
-name: CI WORKFLOW
-
+name: Staging Workflow
 on:
   pull_request:
     branches: 
