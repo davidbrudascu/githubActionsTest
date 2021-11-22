@@ -28,7 +28,7 @@ jobs:
       uses: azure/login@v1
       with:
         creds: ${{secrets.AZURE_CREDENTIALS}}
-    
+        
     - name: Setup .NET Core - restore - test
       uses: actions/setup-dotnet@v1
       with:
