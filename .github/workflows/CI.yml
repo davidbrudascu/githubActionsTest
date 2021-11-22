@@ -11,7 +11,7 @@ on:
       - closed
    
 env:
-    DOTNET_VERSION: '5.0.301' 
+    DOTNET_VERSION: '5.0.301'
     AZURE_WEBAPP_NAME: DWebApp
     AZURE_WEBAPP_Path: "."
 
@@ -67,7 +67,7 @@ jobs:
       
     - name: Build and push image
       run: |
-        docker build -t dwebappregistry.azurecr.io/dwebapp:${{ github.sha }}
+        docker build -t dwebappregistry.azurecr.io/dwebapp:${{ github.sha }} .
         docker push dwebappregistry.azurecr.io/dwebApp:${{ github.sha }} 
         
         
