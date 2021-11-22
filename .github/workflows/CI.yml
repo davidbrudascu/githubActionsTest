@@ -68,6 +68,7 @@ jobs:
     - name: Build and push image
       run: |
         docker build -t dwebappregistry.azurecr.io/dwebapp:${{ github.sha }} .
+        docker push dwebappregistry.azurecr.io/dwebapp:${{ github.sha }}
         
         
 
