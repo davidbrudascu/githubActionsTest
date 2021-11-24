@@ -9,14 +9,19 @@ on:
       - reopened
       - labeled
 
-
+# ^\d+(?:\.\d+)*$
 jobs:
   printlabel:
     runs-on: ubuntu-latest
 
     steps:
+
     - uses: actions/checkout@v2
     - name: printlabel
+      if: "!contains(github.event.issue.labels.*.name, 'deploy_env')"
       run: |
         echo "Label names"
         echo ${{ github.event.label.name }}
+        if ["${{github.event.label.name}}" == "bug"]; then
+        echo "bug"
+        exit 0
