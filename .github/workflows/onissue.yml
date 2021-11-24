@@ -23,6 +23,10 @@ jobs:
         echo "Label names"
         echo ${{ github.event.label.name }}
         if [${{github.event.label.name}} == "bug"]; then
-        echo "bug"
+        echo "Bug was found"
+        echo ${{ github.event.label.name }}
+        exit 0
         else
         echo "not found"
+        exit 1
+        fi
