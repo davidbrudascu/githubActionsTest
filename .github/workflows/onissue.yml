@@ -21,7 +21,7 @@ jobs:
       if: "!contains(github.event.issue.labels.*.name, 'deploy_env')"
       run: |
         echo "Label names"
-        echo ${{ github.event.label.name }}
+        echo "${{ github.event.label.name }}""
         if ["${{github.event.label.name}}" == "bug"]; then
         echo "Bug was found"
         echo ${{ github.event.label.name }}
