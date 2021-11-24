@@ -30,7 +30,6 @@ jobs:
         echo "${{ github.event.label.name }}"
         echo "SCM_VERSION=${{ github.event.label.name }}" >> $GITHUB_ENV
         exit 0
-        else
         echo "Label Not matched"
         exit 1
         fi
