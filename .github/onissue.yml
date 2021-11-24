@@ -1,0 +1,22 @@
+name: Deploy Via Issue
+
+on:
+  issues:
+    types:
+      - opened
+      - pinned
+      - edited
+      - reopened
+      - labeled
+
+
+jobs:
+  printlabel:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: printlabel
+      run: |
+        echo "Label names"
+        echo ${{ github.event.label.name }}
