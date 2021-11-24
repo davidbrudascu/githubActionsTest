@@ -20,9 +20,9 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
-    
+
     - name: printlabel
-      if: github.event.label.name != "deploy_env" && github.event.action == 'labeled'
+      if: github.event.label.name != 'deploy_env' && github.event.action == 'labeled'
       run: |
         regex='[0-9]\.[0-9]\.[0-9]\.[0-9]'
         if [[ "${{ github.event.label.name }}" =~ $regex ]]; then
