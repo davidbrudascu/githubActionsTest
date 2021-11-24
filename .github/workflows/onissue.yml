@@ -19,21 +19,17 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-
     - uses: actions/checkout@v2
-
+    
     - name: printlabel
-      if: "!contains(github.event.issue.labels.*.name, 'deploy_env')"
+      if: github.event.label.name != "deploy_env" && github.event.action == 'labeled'
       run: |
-        echo "Label names"
-        echo "${{ github.event.label.name }}"
         regex='[0-9]\.[0-9]\.[0-9]\.[0-9]'
         if [[ "${{ github.event.label.name }}" =~ $regex ]]; then
         echo "Label matched"
-        echo "VERSION=${{ github.event.label.name }}" >> $GITHUB_ENV
+        echo "SCM_VERSION=${{ github.event.label.name }}" >> $GITHUB_ENV
         exit 0
-        else
-        echo "Not matched"
+        echo "Label Not matched"
         exit 1
         fi
 
