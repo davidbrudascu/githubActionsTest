@@ -35,6 +35,11 @@ jobs:
         exit 1
         fi
 
+  test:
+    runs-on: ubuntu-latest
+    if: "contains(github.event.issue.labels.*.name, 'deploy_env') && github.event.label.name != 'deploy_env' && github.event.action == 'labeled'"
+    steps:
+    - uses: actions/checkout@v2
     - name: Print variable
       run: echo ${{ env.SCM_VERSION }}
     
