@@ -17,7 +17,7 @@ env:
 jobs:
   printlabel:
     runs-on: ubuntu-latest
-    if: "contains(github.event.issue.labels.*.name, 'deploy_env') && github.event.label.name != 'deploy_env'"
+    if: "contains(github.event.issue.labels.*.name, 'deploy_env') && github.event.label.name != 'deploy_env' && github.event.action != 'labeled'"
 
     steps:
     - uses: actions/checkout@v2
