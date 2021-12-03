@@ -31,7 +31,7 @@ jobs:
         if [[ "${{ github.event.label.name }}" =~ $regex ]]; then
         echo "Label matched"
         echo "${{ github.event.label.name }}"
-        echo "::set-output name=version::llqlqlqlql"
+        echo "::set-output name=version::testString"
         exit 0
         else
         echo "Label Not matched"
@@ -47,5 +47,5 @@ jobs:
     - name: Print variable
       run: |
         echo ${{ github.event.label.name }}
-        echo ${{ steps.scm.outputs.version }}
+        echo ${{ needs.printlabel.outputs.version }}
     
