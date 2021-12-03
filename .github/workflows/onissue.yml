@@ -45,5 +45,7 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - name: Print variable
-      run: echo ${{ steps.scm.outputs.version }}
+      run: |
+        echo ${{ github.event.label.name }}
+        echo ${{ steps.scm.outputs.version }}
     
