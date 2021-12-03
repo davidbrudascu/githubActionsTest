@@ -19,7 +19,7 @@ jobs:
     runs-on: ubuntu-latest
     if: "contains(github.event.issue.labels.*.name, 'deploy_env') && github.event.label.name != 'deploy_env' && github.event.action == 'labeled'"
     outputs:
-      output1: ${{ steps.scm.outputs.scm }}
+      version: ${{ steps.scm.outputs.version }}
 
     steps:
     - uses: actions/checkout@v2
@@ -31,7 +31,7 @@ jobs:
         if [[ "${{ github.event.label.name }}" =~ $regex ]]; then
         echo "Label matched"
         echo "${{ github.event.label.name }}"
-        echo "::set-output name=scm::${{ github.event.label.name }}"
+        echo "::set-output name=version::"${{ github.event.label.name }}""
         exit 0
         else
         echo "Label Not matched"
@@ -45,5 +45,5 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - name: Print variable
-      run: echo ${{ needs.scm.outputs.scm }}
+      run: echo ${{ steps.scm.outputs.version }}
     
